@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.Domain.Entities
 {
-    internal class UserFoodFavoriteEntity : BaseAuditableEntity
+    public class UserFoodFavoriteEntity : BaseAuditableEntity
     {
     }
 }

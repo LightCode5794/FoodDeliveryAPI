@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.Application.Interfaces.Repositories
 {
-    internal interface IFoodReviewReponsitory
+    public interface IPermissionReponsitory
     {
     }
 }

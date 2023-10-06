@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodDelivery.Application.Interfaces.Repositories
+namespace FoodDelivery.Persistence.Repositories
 {
-    internal interface IOderReponsitory
+    internal class FoodCouponRepository
     {
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.Domain.Entities
 {
-    internal class NotificationEntity : BaseAuditableEntity
+    public class NotificationEntity : BaseAuditableEntity
     {
     }
 }

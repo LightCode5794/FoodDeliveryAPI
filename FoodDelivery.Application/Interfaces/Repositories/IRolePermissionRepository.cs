@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.Application.Interfaces.Repositories
 {
-    internal interface IRolePermissionReponsitory
+    public interface IRolePermissionReponsitory
     {
     }
 }

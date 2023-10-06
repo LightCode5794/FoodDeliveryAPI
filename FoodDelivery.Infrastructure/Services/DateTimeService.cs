@@ -1,6 +1,6 @@
-﻿using CleanArchitectureDemo.Application.Interfaces;
+﻿using FoodDelivery.Application.Interfaces;
 
-namespace CleanArchitectureDemo.Infrastructure.Services
+namespace FoodDelivery.Infrastructure.Services
 {
     public class DateTimeService : IDateTimeService
     {

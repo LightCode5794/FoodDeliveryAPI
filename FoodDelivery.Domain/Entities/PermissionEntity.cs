@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.Domain.Entities
 {
-    internal class PermissionEntity : BaseAuditableEntity
+    public class PermissionEntity : BaseAuditableEntity
     {
     }
 }

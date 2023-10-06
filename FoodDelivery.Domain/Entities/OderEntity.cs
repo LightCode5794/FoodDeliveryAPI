@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.Domain.Entities
 {
-    internal class OderEntity : BaseAuditableEntity
+    public class OderEntity : BaseAuditableEntity
     {
     }
 }
