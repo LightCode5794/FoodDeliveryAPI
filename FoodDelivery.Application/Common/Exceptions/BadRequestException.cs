@@ -1,4 +1,6 @@
-﻿namespace FoodDelivery.Application.Common.Exceptions
+﻿
+
+namespace FoodDelivery.Application.Common.Exceptions
 {
     public class BadRequestException : Exception
     {

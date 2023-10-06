@@ -16,10 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Common\Exceptions\" />
-    <Folder Include="Common\Mappings\" />
     <Folder Include="DTOs\" />
-    <Folder Include="Extensions\" />
     <Folder Include="Features\FoodStores\Commands\CreateFoodStore\" />
     <Folder Include="Features\FoodStores\Commands\DeleteFoodStore\" />
     <Folder Include="Features\FoodStores\Commands\UpdateFoodStore\" />
