@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using CFoodDelivery.Persistence.Repositories;
 
 namespace FoodDelivery.Persistence.Extensions
 {

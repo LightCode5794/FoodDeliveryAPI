@@ -1,4 +1,4 @@
-﻿using CleanArchitectureDemo.Persistence.Repositories;
+﻿using FoodDelivery.Persistence.Repositories;
 using FoodDelivery.Application.Interfaces.Repositories;
 using FoodDelivery.Domain.Common;
 using FoodDelivery.Domain.Common.Interfaces;
@@ -6,7 +6,7 @@ using FoodDelivery.Persistence.Contexts;
 
 using System.Collections;
 
-namespace CFoodDelivery.Persistence.Repositories
+namespace FoodDelivery.Persistence.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {

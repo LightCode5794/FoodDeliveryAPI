@@ -35,6 +35,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FoodDelivery.Domain\FoodDelivery.Domain.csproj" />
+    <ProjectReference Include="..\FoodDelivery.Shared\FoodDelivery.Shared.csproj" />
   </ItemGroup>
 
 </Project>

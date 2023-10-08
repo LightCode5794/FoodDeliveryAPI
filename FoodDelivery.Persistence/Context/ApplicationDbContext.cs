@@ -18,10 +18,10 @@ namespace FoodDelivery.Persistence.Contexts
             _dispatcher = dispatcher;
         }
 
-        public DbSet<UserEntity> Clubs => Set<UserEntity>();
-        public DbSet<> Players => Set<>();
+        public DbSet<UserEntity> User => Set<UserEntity>();
+         /*public DbSet<> Players => Set<>();
         public DbSet<> Stadiums => Set<>();
-        public DbSet<> Countries => Set<>();
+        public DbSet<> Countries => Set<>(); */
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
