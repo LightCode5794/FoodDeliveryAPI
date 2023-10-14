@@ -19,9 +19,9 @@ namespace FoodDelivery.Persistence.Contexts
         }
 
         public DbSet<UserEntity> User => Set<UserEntity>();
-         /*public DbSet<> Players => Set<>();
-        public DbSet<> Stadiums => Set<>();
-        public DbSet<> Countries => Set<>(); */
+        public DbSet<RoleEntity> Role => Set<RoleEntity>();
+        public DbSet<PermissionEntity> Permission => Set<PermissionEntity>();
+        public DbSet<RolePermissionEntity> Role_Permissions => Set<RolePermissionEntity>(); 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
