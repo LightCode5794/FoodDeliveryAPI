@@ -9,7 +9,6 @@ namespace FoodDelivery.Domain.Entities
 {
     public class RolePermissionEntity : BaseAuditableEntity
     {
-        public int Role_Id { get; set; }
-        public int Permission_Id { get; set; }
+      
     }
 }

@@ -9,5 +9,8 @@ namespace FoodDelivery.Domain.Entities
 {
     public class NotificationEntity : BaseAuditableEntity
     {
+        public required string Content { get; set; }
+        public string Status { get; set; } = string.Empty;
+        public ICollection<OderEntity>? Orders { get; set; }
     }
 }

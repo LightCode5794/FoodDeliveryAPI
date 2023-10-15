@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.Domain.Entities
 {
-    public class OderFoodEntity : BaseAuditableEntity
+    public class FoodImageEntity : BaseAuditableEntity
     {
+        public string Url { get; set; } = string.Empty;
+        public required FoodEntity FoodReview { get; set; }
     }
 }

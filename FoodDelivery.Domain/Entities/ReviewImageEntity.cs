@@ -8,11 +8,10 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.Domain.Entities
 {
-    public class RoleEntity : BaseAuditableEntity
+    public class ReviewImageEntity : BaseAuditableEntity
     {
-        public required string Name { get; set; }
-        public ICollection<UserEntity>? Users { get; set; }
-        public ICollection<PermissionEntity>? Permissions { get; set; }
-
+        public string Url { get; set; } = string.Empty;
+        public required FoodReviewEntity FoodReview { get; set; }
     }
+
 }

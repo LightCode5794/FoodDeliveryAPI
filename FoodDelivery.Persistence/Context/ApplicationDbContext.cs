@@ -1,6 +1,7 @@
 ﻿using FoodDelivery.Domain.Common;
 using FoodDelivery.Domain.Common.Interfaces;
 using FoodDelivery.Domain.Entities;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 using System.Reflection;
@@ -19,14 +20,33 @@ namespace FoodDelivery.Persistence.Contexts
         }
 
         public DbSet<UserEntity> User => Set<UserEntity>();
-        public DbSet<RoleEntity> Role => Set<RoleEntity>();
         public DbSet<PermissionEntity> Permission => Set<PermissionEntity>();
-        public DbSet<RolePermissionEntity> Role_Permissions => Set<RolePermissionEntity>(); 
+        public DbSet<RoleEntity> Role => Set<RoleEntity>();
+        public DbSet<FoodStoreEntity> Food_Store => Set<FoodStoreEntity>();
+        public DbSet<FoodEntity> Food => Set<FoodEntity>();
+        public DbSet<FoodImageEntity> Food_Image => Set<FoodImageEntity>();
+        public DbSet<CouponEntity> Coupon => Set<CouponEntity>();
+        public DbSet<FoodReviewEntity> Food_Review => Set<FoodReviewEntity>();
+        public DbSet<ReviewImageEntity> Review_Image => Set<ReviewImageEntity>();
+        public DbSet<OderEntity> Oder  => Set<OderEntity>();
+        public DbSet<OderDetailEntity> Oder_Detail => Set<OderDetailEntity>();
+        public DbSet<NotificationEntity> Notification => Set<NotificationEntity>();
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+
+            // Indirect many-to-many setup for User review food
+            modelBuilder.Entity<FoodReviewEntity>()
+        .   HasKey(x => new { x.UserId, x.FoodId });
+
+            // Indirect many-to-many setup for Oder and Food
+            modelBuilder.Entity<OderDetailEntity>()
+            .HasKey(x => new { x.OderId, x.FoodId });
+            
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

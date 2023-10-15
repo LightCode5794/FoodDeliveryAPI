@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.Persistence.Repositories
 {
-    public class OderFoodRepository : IOderFoodRepository
+    public class OderDetailRepository : IOderDetailRepository
     {
     }
 }

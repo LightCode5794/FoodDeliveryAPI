@@ -9,5 +9,6 @@ namespace FoodDelivery.Domain.Entities
 {
     public class FoodCouponEntity : BaseAuditableEntity
     {
+        
     }
 }

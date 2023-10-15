@@ -10,7 +10,6 @@ namespace FoodDelivery.Domain.Entities
 {
     public class PermissionEntity : BaseAuditableEntity
     {
-        [Column(TypeName = "varchar(128)")]
         public required string? Name { get; set; }
 
         public ICollection<RoleEntity>? Roles { get; set; }
