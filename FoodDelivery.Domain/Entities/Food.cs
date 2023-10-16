@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace FoodDelivery.Domain.Entities
 {
     
-    public class FoodEntity : BaseAuditableEntity
+    public class Food : BaseAuditableEntity
     {
         public required string Name { get; set; }
         public string Description { get; set; } = string.Empty;
@@ -20,20 +20,20 @@ namespace FoodDelivery.Domain.Entities
         [Column(TypeName = "Money")]
         public required decimal  OriginalPrice { get; set; } = 0;
       
-        public required ICollection<FoodImageEntity> Images { get; set; }
+        public required string[] Images { get; set; }
 
         [EnumDataType(typeof(StatusFood))]
         public  StatusFood Status { get; set; } = StatusFood.PENDING;
 
-        public required FoodStoreEntity Store { get; set; }
+        public required FoodStore Store { get; set; }
         
-        public ICollection<UserEntity>? FavoriteUsers { get; set; }
+        public ICollection<User>? FavoriteUsers { get; set; }
 
-        public ICollection<FoodReviewEntity>? UserReviews { get; set; }
+        public ICollection<FoodReview>? UserReviews { get; set; }
 
-        public ICollection<CouponEntity>? Coupons { get; set; }
+        public ICollection<Coupon>? Coupons { get; set; }
 
-        public ICollection<OderDetailEntity>? OdersLink { get; set; }
+        public ICollection<OderDetail>? OdersLink { get; set; }
 
     }
 

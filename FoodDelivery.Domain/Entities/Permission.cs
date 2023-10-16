@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.Domain.Entities
 {
-    public class PermissionEntity : BaseAuditableEntity
+    public class Permission : BaseAuditableEntity
     {
         public required string? Name { get; set; }
 
-        public ICollection<RoleEntity>? Roles { get; set; }
+        public ICollection<Role>? Roles { get; set; }
+        // Thay đổi tên bảng phụ
+        public string RelationName = "RolePermission";
     }
 }

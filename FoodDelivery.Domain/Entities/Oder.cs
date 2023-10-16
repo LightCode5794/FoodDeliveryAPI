@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 namespace FoodDelivery.Domain.Entities
 {
    
-    public class OderEntity : BaseAuditableEntity
+    public class Oder : BaseAuditableEntity
     {
         public required string Address { get; set; }
         
         [EnumDataType(typeof(StatusOder))]
         public StatusOder Status { get; set; } = StatusOder.PENDING;
 
-        public ICollection<OderDetailEntity>? FoodsLink { get; set; }
+        public ICollection<OderDetail>? FoodsLink { get; set; }
 
-        public ICollection<NotificationEntity>? Notifications { get; set; }
+        public ICollection<Notification>? Notifications { get; set; }
     }
 }

@@ -19,18 +19,18 @@ namespace FoodDelivery.Persistence.Contexts
             _dispatcher = dispatcher;
         }
 
-        public DbSet<UserEntity> User => Set<UserEntity>();
-        public DbSet<PermissionEntity> Permission => Set<PermissionEntity>();
-        public DbSet<RoleEntity> Role => Set<RoleEntity>();
-        public DbSet<FoodStoreEntity> Food_Store => Set<FoodStoreEntity>();
-        public DbSet<FoodEntity> Food => Set<FoodEntity>();
-        public DbSet<FoodImageEntity> Food_Image => Set<FoodImageEntity>();
-        public DbSet<CouponEntity> Coupon => Set<CouponEntity>();
-        public DbSet<FoodReviewEntity> Food_Review => Set<FoodReviewEntity>();
-        public DbSet<ReviewImageEntity> Review_Image => Set<ReviewImageEntity>();
-        public DbSet<OderEntity> Oder  => Set<OderEntity>();
-        public DbSet<OderDetailEntity> Oder_Detail => Set<OderDetailEntity>();
-        public DbSet<NotificationEntity> Notification => Set<NotificationEntity>();
+        public DbSet<User> User => Set<User>();
+        public DbSet<Permission> Permission => Set<Permission>();
+        public DbSet<Role> Role => Set<Role>();
+        public DbSet<FoodStore> Food_Store => Set<FoodStore>();
+        public DbSet<Food> Food => Set<Food>();
+        //public DbSet<FoodImage> Food_Image => Set<FoodImage>();
+        public DbSet<Coupon> Coupon => Set<Coupon>();
+        public DbSet<FoodReview> Food_Review => Set<FoodReview>();
+        //public DbSet<ReviewImage> Review_Image => Set<ReviewImage>();
+        public DbSet<Oder> Oder  => Set<Oder>();
+        public DbSet<OderDetail> Oder_Detail => Set<OderDetail>();
+        public DbSet<Notification> Notification => Set<Notification>();
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -40,13 +40,13 @@ namespace FoodDelivery.Persistence.Contexts
 
 
             // Indirect many-to-many setup for User review food
-            modelBuilder.Entity<FoodReviewEntity>()
+            modelBuilder.Entity<FoodReview>()
         .   HasKey(x => new { x.UserId, x.FoodId });
 
             // Indirect many-to-many setup for Oder and Food
-            modelBuilder.Entity<OderDetailEntity>()
+            modelBuilder.Entity<OderDetail>()
             .HasKey(x => new { x.OderId, x.FoodId });
-            
+          
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

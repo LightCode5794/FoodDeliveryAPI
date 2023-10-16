@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.Domain.Entities
 {
-    public class UserEntity : BaseAuditableEntity
+    public class User : BaseAuditableEntity
     {
     
         public  string Email { get; set; } = string.Empty;
@@ -23,11 +23,11 @@ namespace FoodDelivery.Domain.Entities
         public string Avatar { get; set; } = string.Empty;
    
         public required string Address { get; set; } = string.Empty;
-        public required RoleEntity Role { get; set; }
+        public required Role Role { get; set; }
 
-        public ICollection<FoodEntity>? FavoriteFoods { get; set; }
+        public ICollection<Food>? FavoriteFoods { get; set; }
 
-        public ICollection<FoodReviewEntity>? FoodReviews { get; set; }
+        public ICollection<FoodReview>? FoodReviews { get; set; }
 
     }
 }

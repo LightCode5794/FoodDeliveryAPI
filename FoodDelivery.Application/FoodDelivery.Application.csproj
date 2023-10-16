@@ -21,7 +21,6 @@
     <Folder Include="Features\FoodStores\Commands\DeleteFoodStore\" />
     <Folder Include="Features\FoodStores\Commands\UpdateFoodStore\" />
     <Folder Include="Features\FoodStores\Queries\" />
-    <Folder Include="Features\Foods\Commands\CreateFood\" />
     <Folder Include="Features\Foods\Commands\DeleteFood\" />
     <Folder Include="Features\Foods\Commands\UpdateFood\" />
     <Folder Include="Features\Foods\Queries\" />

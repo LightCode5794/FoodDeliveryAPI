@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.Domain.Entities
 {
-    public class FoodStoreEntity : BaseAuditableEntity
+    public class FoodStore : BaseAuditableEntity
     {
         public required string Name { get; set; }
         public string? Description { get; set; } = string.Empty;

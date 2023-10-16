@@ -141,6 +141,7 @@ namespace FoodDelivery.Persistence.Migrations
                     Name = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false),
                     OriginalPrice = table.Column<decimal>(type: "Money", nullable: false),
+                    Images = table.Column<string[]>(type: "text[]", nullable: false),
                     Status = table.Column<int>(type: "integer", nullable: false),
                     StoreId = table.Column<int>(type: "integer", nullable: false),
                     CreatedBy = table.Column<int>(type: "integer", nullable: true),
@@ -160,7 +161,7 @@ namespace FoodDelivery.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "NotificationEntityOderEntity",
+                name: "NotificationOder",
                 columns: table => new
                 {
                     NotificationsId = table.Column<int>(type: "integer", nullable: false),
@@ -168,15 +169,15 @@ namespace FoodDelivery.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_NotificationEntityOderEntity", x => new { x.NotificationsId, x.OrdersId });
+                    table.PrimaryKey("PK_NotificationOder", x => new { x.NotificationsId, x.OrdersId });
                     table.ForeignKey(
-                        name: "FK_NotificationEntityOderEntity_Notification_NotificationsId",
+                        name: "FK_NotificationOder_Notification_NotificationsId",
                         column: x => x.NotificationsId,
                         principalTable: "Notification",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_NotificationEntityOderEntity_Oder_OrdersId",
+                        name: "FK_NotificationOder_Oder_OrdersId",
                         column: x => x.OrdersId,
                         principalTable: "Oder",
                         principalColumn: "Id",
@@ -184,7 +185,7 @@ namespace FoodDelivery.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PermissionEntityRoleEntity",
+                name: "PermissionRole",
                 columns: table => new
                 {
                     PermissionsId = table.Column<int>(type: "integer", nullable: false),
@@ -192,15 +193,15 @@ namespace FoodDelivery.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PermissionEntityRoleEntity", x => new { x.PermissionsId, x.RolesId });
+                    table.PrimaryKey("PK_PermissionRole", x => new { x.PermissionsId, x.RolesId });
                     table.ForeignKey(
-                        name: "FK_PermissionEntityRoleEntity_Permission_PermissionsId",
+                        name: "FK_PermissionRole_Permission_PermissionsId",
                         column: x => x.PermissionsId,
                         principalTable: "Permission",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PermissionEntityRoleEntity_Role_RolesId",
+                        name: "FK_PermissionRole_Role_RolesId",
                         column: x => x.RolesId,
                         principalTable: "Role",
                         principalColumn: "Id",
@@ -237,7 +238,7 @@ namespace FoodDelivery.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CouponEntityFoodEntity",
+                name: "CouponFood",
                 columns: table => new
                 {
                     CouponsId = table.Column<int>(type: "integer", nullable: false),
@@ -245,40 +246,16 @@ namespace FoodDelivery.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CouponEntityFoodEntity", x => new { x.CouponsId, x.FoodsId });
+                    table.PrimaryKey("PK_CouponFood", x => new { x.CouponsId, x.FoodsId });
                     table.ForeignKey(
-                        name: "FK_CouponEntityFoodEntity_Coupon_CouponsId",
+                        name: "FK_CouponFood_Coupon_CouponsId",
                         column: x => x.CouponsId,
                         principalTable: "Coupon",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CouponEntityFoodEntity_Food_FoodsId",
+                        name: "FK_CouponFood_Food_FoodsId",
                         column: x => x.FoodsId,
-                        principalTable: "Food",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Food_Image",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Url = table.Column<string>(type: "text", nullable: false),
-                    FoodReviewId = table.Column<int>(type: "integer", nullable: false),
-                    CreatedBy = table.Column<int>(type: "integer", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "integer", nullable: true),
-                    UpdatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Food_Image", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Food_Image_Food_FoodReviewId",
-                        column: x => x.FoodReviewId,
                         principalTable: "Food",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -319,10 +296,10 @@ namespace FoodDelivery.Persistence.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "integer", nullable: false),
-                    FoodId = table.Column<string>(type: "text", nullable: false),
+                    FoodId = table.Column<int>(type: "integer", nullable: false),
                     Content = table.Column<string>(type: "text", nullable: false),
                     Rating = table.Column<int>(type: "integer", nullable: false),
-                    FoodId1 = table.Column<int>(type: "integer", nullable: false),
+                    Images = table.Column<string[]>(type: "text[]", nullable: true),
                     Id = table.Column<int>(type: "integer", nullable: false),
                     CreatedBy = table.Column<int>(type: "integer", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -333,8 +310,8 @@ namespace FoodDelivery.Persistence.Migrations
                 {
                     table.PrimaryKey("PK_Food_Review", x => new { x.UserId, x.FoodId });
                     table.ForeignKey(
-                        name: "FK_Food_Review_Food_FoodId1",
-                        column: x => x.FoodId1,
+                        name: "FK_Food_Review_Food_FoodId",
+                        column: x => x.FoodId,
                         principalTable: "Food",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -347,7 +324,7 @@ namespace FoodDelivery.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FoodEntityUserEntity",
+                name: "FoodUser",
                 columns: table => new
                 {
                     FavoriteFoodsId = table.Column<int>(type: "integer", nullable: false),
@@ -355,43 +332,18 @@ namespace FoodDelivery.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FoodEntityUserEntity", x => new { x.FavoriteFoodsId, x.FavoriteUsersId });
+                    table.PrimaryKey("PK_FoodUser", x => new { x.FavoriteFoodsId, x.FavoriteUsersId });
                     table.ForeignKey(
-                        name: "FK_FoodEntityUserEntity_Food_FavoriteFoodsId",
+                        name: "FK_FoodUser_Food_FavoriteFoodsId",
                         column: x => x.FavoriteFoodsId,
                         principalTable: "Food",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_FoodEntityUserEntity_User_FavoriteUsersId",
+                        name: "FK_FoodUser_User_FavoriteUsersId",
                         column: x => x.FavoriteUsersId,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Review_Image",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Url = table.Column<string>(type: "text", nullable: false),
-                    FoodReviewUserId = table.Column<int>(type: "integer", nullable: false),
-                    FoodReviewFoodId = table.Column<string>(type: "text", nullable: false),
-                    CreatedBy = table.Column<int>(type: "integer", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "integer", nullable: true),
-                    UpdatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Review_Image", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Review_Image_Food_Review_FoodReviewUserId_FoodReviewFoodId",
-                        columns: x => new { x.FoodReviewUserId, x.FoodReviewFoodId },
-                        principalTable: "Food_Review",
-                        principalColumns: new[] { "UserId", "FoodId" },
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -401,8 +353,8 @@ namespace FoodDelivery.Persistence.Migrations
                 column: "FoodStoreId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CouponEntityFoodEntity_FoodsId",
-                table: "CouponEntityFoodEntity",
+                name: "IX_CouponFood_FoodsId",
+                table: "CouponFood",
                 column: "FoodsId");
 
             migrationBuilder.CreateIndex(
@@ -411,23 +363,18 @@ namespace FoodDelivery.Persistence.Migrations
                 column: "StoreId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Food_Image_FoodReviewId",
-                table: "Food_Image",
-                column: "FoodReviewId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Food_Review_FoodId1",
+                name: "IX_Food_Review_FoodId",
                 table: "Food_Review",
-                column: "FoodId1");
+                column: "FoodId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FoodEntityUserEntity_FavoriteUsersId",
-                table: "FoodEntityUserEntity",
+                name: "IX_FoodUser_FavoriteUsersId",
+                table: "FoodUser",
                 column: "FavoriteUsersId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_NotificationEntityOderEntity_OrdersId",
-                table: "NotificationEntityOderEntity",
+                name: "IX_NotificationOder_OrdersId",
+                table: "NotificationOder",
                 column: "OrdersId");
 
             migrationBuilder.CreateIndex(
@@ -436,14 +383,9 @@ namespace FoodDelivery.Persistence.Migrations
                 column: "FoodId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PermissionEntityRoleEntity_RolesId",
-                table: "PermissionEntityRoleEntity",
+                name: "IX_PermissionRole_RolesId",
+                table: "PermissionRole",
                 column: "RolesId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Review_Image_FoodReviewUserId_FoodReviewFoodId",
-                table: "Review_Image",
-                columns: new[] { "FoodReviewUserId", "FoodReviewFoodId" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_User_RoleId",
@@ -455,31 +397,34 @@ namespace FoodDelivery.Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CouponEntityFoodEntity");
+                name: "CouponFood");
 
             migrationBuilder.DropTable(
-                name: "Food_Image");
+                name: "Food_Review");
 
             migrationBuilder.DropTable(
-                name: "FoodEntityUserEntity");
+                name: "FoodUser");
 
             migrationBuilder.DropTable(
-                name: "NotificationEntityOderEntity");
+                name: "NotificationOder");
 
             migrationBuilder.DropTable(
                 name: "Oder_Detail");
 
             migrationBuilder.DropTable(
-                name: "PermissionEntityRoleEntity");
-
-            migrationBuilder.DropTable(
-                name: "Review_Image");
+                name: "PermissionRole");
 
             migrationBuilder.DropTable(
                 name: "Coupon");
 
             migrationBuilder.DropTable(
+                name: "User");
+
+            migrationBuilder.DropTable(
                 name: "Notification");
+
+            migrationBuilder.DropTable(
+                name: "Food");
 
             migrationBuilder.DropTable(
                 name: "Oder");
@@ -488,19 +433,10 @@ namespace FoodDelivery.Persistence.Migrations
                 name: "Permission");
 
             migrationBuilder.DropTable(
-                name: "Food_Review");
-
-            migrationBuilder.DropTable(
-                name: "Food");
-
-            migrationBuilder.DropTable(
-                name: "User");
+                name: "Role");
 
             migrationBuilder.DropTable(
                 name: "Food_Store");
-
-            migrationBuilder.DropTable(
-                name: "Role");
         }
     }
 }

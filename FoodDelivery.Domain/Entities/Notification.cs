@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.Domain.Entities
 {
-    public class NotificationEntity : BaseAuditableEntity
+    public class Notification : BaseAuditableEntity
     {
         public required string Content { get; set; }
         public string Status { get; set; } = string.Empty;
-        public ICollection<OderEntity>? Orders { get; set; }
+        public ICollection<Oder>? Orders { get; set; }
     }
 }

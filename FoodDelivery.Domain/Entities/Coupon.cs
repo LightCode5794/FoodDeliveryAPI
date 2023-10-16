@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.Domain.Entities
 {
-    public class CouponEntity : BaseAuditableEntity
+    public class Coupon : BaseAuditableEntity
     {
         public required string Title { get; set; }
         public string? Images { get; set; } = string.Empty;
@@ -23,8 +23,8 @@ namespace FoodDelivery.Domain.Entities
         public decimal Discount { get; set; } = 0;
         public DateTime StartDay { get; set; } = DateTime.Now;
         public DateTime EndDay { get; set; }
-        public required FoodStoreEntity FoodStore { get; set; }
-        public ICollection<FoodEntity>? Foods { get; set; }
+        public required FoodStore FoodStore { get; set; }
+        public ICollection<Food>? Foods { get; set; }
 
     }
 }

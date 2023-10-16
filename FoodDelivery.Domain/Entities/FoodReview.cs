@@ -10,19 +10,20 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.Domain.Entities
 {
-    public class FoodReviewEntity : BaseAuditableEntity
+    public class FoodReview : BaseAuditableEntity
     {
 
         public required int UserId { get; set; }
-        public required string FoodId  { get; set; }
+        public required int FoodId  { get; set; }
         public required string Content { get; set; }
 
         [Range(1, 5)]
         public required int Rating { get; set; }
 
-        public ICollection<ReviewImageEntity>? Images { get; set; }
-        public required UserEntity User { get; set; }
-        public required FoodEntity Food { get; set; }
+        //public ICollection<ReviewImageEntity>? Images { get; set; }
+        public string[]? Images { get; set; }
+        public required User User { get; set; }
+        public required Food Food { get; set; }
 
     }
     

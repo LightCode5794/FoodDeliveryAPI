@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FoodDelivery.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231015190419_InitWebDB")]
+    [Migration("20231016032519_InitWebDB")]
     partial class InitWebDB
     {
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace FoodDelivery.Persistence.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("CouponEntityFoodEntity", b =>
+            modelBuilder.Entity("CouponFood", b =>
                 {
                     b.Property<int>("CouponsId")
                         .HasColumnType("integer");
@@ -37,10 +37,10 @@ namespace FoodDelivery.Persistence.Migrations
 
                     b.HasIndex("FoodsId");
 
-                    b.ToTable("CouponEntityFoodEntity");
+                    b.ToTable("CouponFood");
                 });
 
-            modelBuilder.Entity("FoodDelivery.Domain.Entities.CouponEntity", b =>
+            modelBuilder.Entity("FoodDelivery.Domain.Entities.Coupon", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -95,7 +95,7 @@ namespace FoodDelivery.Persistence.Migrations
                     b.ToTable("Coupon");
                 });
 
-            modelBuilder.Entity("FoodDelivery.Domain.Entities.FoodEntity", b =>
+            modelBuilder.Entity("FoodDelivery.Domain.Entities.Food", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -112,6 +112,10 @@ namespace FoodDelivery.Persistence.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<string[]>("Images")
+                        .IsRequired()
+                        .HasColumnType("text[]");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -139,47 +143,13 @@ namespace FoodDelivery.Persistence.Migrations
                     b.ToTable("Food");
                 });
 
-            modelBuilder.Entity("FoodDelivery.Domain.Entities.FoodImageEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("CreatedBy")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("FoodReviewId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FoodReviewId");
-
-                    b.ToTable("Food_Image");
-                });
-
-            modelBuilder.Entity("FoodDelivery.Domain.Entities.FoodReviewEntity", b =>
+            modelBuilder.Entity("FoodDelivery.Domain.Entities.FoodReview", b =>
                 {
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("FoodId")
-                        .HasColumnType("text");
+                    b.Property<int>("FoodId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -191,11 +161,11 @@ namespace FoodDelivery.Persistence.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("FoodId1")
-                        .HasColumnType("integer");
-
                     b.Property<int>("Id")
                         .HasColumnType("integer");
+
+                    b.Property<string[]>("Images")
+                        .HasColumnType("text[]");
 
                     b.Property<int>("Rating")
                         .HasColumnType("integer");
@@ -208,12 +178,12 @@ namespace FoodDelivery.Persistence.Migrations
 
                     b.HasKey("UserId", "FoodId");
 
-                    b.HasIndex("FoodId1");
+                    b.HasIndex("FoodId");
 
                     b.ToTable("Food_Review");
                 });
 
-            modelBuilder.Entity("FoodDelivery.Domain.Entities.FoodStoreEntity", b =>
+            modelBuilder.Entity("FoodDelivery.Domain.Entities.FoodStore", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -249,7 +219,7 @@ namespace FoodDelivery.Persistence.Migrations
                     b.ToTable("Food_Store");
                 });
 
-            modelBuilder.Entity("FoodDelivery.Domain.Entities.NotificationEntity", b =>
+            modelBuilder.Entity("FoodDelivery.Domain.Entities.Notification", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -282,7 +252,39 @@ namespace FoodDelivery.Persistence.Migrations
                     b.ToTable("Notification");
                 });
 
-            modelBuilder.Entity("FoodDelivery.Domain.Entities.OderDetailEntity", b =>
+            modelBuilder.Entity("FoodDelivery.Domain.Entities.Oder", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Oder");
+                });
+
+            modelBuilder.Entity("FoodDelivery.Domain.Entities.OderDetail", b =>
                 {
                     b.Property<int>("OderId")
                         .HasColumnType("integer");
@@ -315,39 +317,7 @@ namespace FoodDelivery.Persistence.Migrations
                     b.ToTable("Oder_Detail");
                 });
 
-            modelBuilder.Entity("FoodDelivery.Domain.Entities.OderEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int?>("CreatedBy")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Oder");
-                });
-
-            modelBuilder.Entity("FoodDelivery.Domain.Entities.PermissionEntity", b =>
+            modelBuilder.Entity("FoodDelivery.Domain.Entities.Permission", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -375,45 +345,7 @@ namespace FoodDelivery.Persistence.Migrations
                     b.ToTable("Permission");
                 });
 
-            modelBuilder.Entity("FoodDelivery.Domain.Entities.ReviewImageEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("CreatedBy")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("FoodReviewFoodId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("FoodReviewUserId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FoodReviewUserId", "FoodReviewFoodId");
-
-                    b.ToTable("Review_Image");
-                });
-
-            modelBuilder.Entity("FoodDelivery.Domain.Entities.RoleEntity", b =>
+            modelBuilder.Entity("FoodDelivery.Domain.Entities.Role", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -442,7 +374,7 @@ namespace FoodDelivery.Persistence.Migrations
                     b.ToTable("Role");
                 });
 
-            modelBuilder.Entity("FoodDelivery.Domain.Entities.UserEntity", b =>
+            modelBuilder.Entity("FoodDelivery.Domain.Entities.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -496,7 +428,7 @@ namespace FoodDelivery.Persistence.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("FoodEntityUserEntity", b =>
+            modelBuilder.Entity("FoodUser", b =>
                 {
                     b.Property<int>("FavoriteFoodsId")
                         .HasColumnType("integer");
@@ -508,10 +440,10 @@ namespace FoodDelivery.Persistence.Migrations
 
                     b.HasIndex("FavoriteUsersId");
 
-                    b.ToTable("FoodEntityUserEntity");
+                    b.ToTable("FoodUser");
                 });
 
-            modelBuilder.Entity("NotificationEntityOderEntity", b =>
+            modelBuilder.Entity("NotificationOder", b =>
                 {
                     b.Property<int>("NotificationsId")
                         .HasColumnType("integer");
@@ -523,10 +455,10 @@ namespace FoodDelivery.Persistence.Migrations
 
                     b.HasIndex("OrdersId");
 
-                    b.ToTable("NotificationEntityOderEntity");
+                    b.ToTable("NotificationOder");
                 });
 
-            modelBuilder.Entity("PermissionEntityRoleEntity", b =>
+            modelBuilder.Entity("PermissionRole", b =>
                 {
                     b.Property<int>("PermissionsId")
                         .HasColumnType("integer");
@@ -538,27 +470,27 @@ namespace FoodDelivery.Persistence.Migrations
 
                     b.HasIndex("RolesId");
 
-                    b.ToTable("PermissionEntityRoleEntity");
+                    b.ToTable("PermissionRole");
                 });
 
-            modelBuilder.Entity("CouponEntityFoodEntity", b =>
+            modelBuilder.Entity("CouponFood", b =>
                 {
-                    b.HasOne("FoodDelivery.Domain.Entities.CouponEntity", null)
+                    b.HasOne("FoodDelivery.Domain.Entities.Coupon", null)
                         .WithMany()
                         .HasForeignKey("CouponsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FoodDelivery.Domain.Entities.FoodEntity", null)
+                    b.HasOne("FoodDelivery.Domain.Entities.Food", null)
                         .WithMany()
                         .HasForeignKey("FoodsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("FoodDelivery.Domain.Entities.CouponEntity", b =>
+            modelBuilder.Entity("FoodDelivery.Domain.Entities.Coupon", b =>
                 {
-                    b.HasOne("FoodDelivery.Domain.Entities.FoodStoreEntity", "FoodStore")
+                    b.HasOne("FoodDelivery.Domain.Entities.FoodStore", "FoodStore")
                         .WithMany()
                         .HasForeignKey("FoodStoreId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -567,9 +499,9 @@ namespace FoodDelivery.Persistence.Migrations
                     b.Navigation("FoodStore");
                 });
 
-            modelBuilder.Entity("FoodDelivery.Domain.Entities.FoodEntity", b =>
+            modelBuilder.Entity("FoodDelivery.Domain.Entities.Food", b =>
                 {
-                    b.HasOne("FoodDelivery.Domain.Entities.FoodStoreEntity", "Store")
+                    b.HasOne("FoodDelivery.Domain.Entities.FoodStore", "Store")
                         .WithMany()
                         .HasForeignKey("StoreId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -578,26 +510,15 @@ namespace FoodDelivery.Persistence.Migrations
                     b.Navigation("Store");
                 });
 
-            modelBuilder.Entity("FoodDelivery.Domain.Entities.FoodImageEntity", b =>
+            modelBuilder.Entity("FoodDelivery.Domain.Entities.FoodReview", b =>
                 {
-                    b.HasOne("FoodDelivery.Domain.Entities.FoodEntity", "FoodReview")
-                        .WithMany("Images")
-                        .HasForeignKey("FoodReviewId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("FoodReview");
-                });
-
-            modelBuilder.Entity("FoodDelivery.Domain.Entities.FoodReviewEntity", b =>
-                {
-                    b.HasOne("FoodDelivery.Domain.Entities.FoodEntity", "Food")
+                    b.HasOne("FoodDelivery.Domain.Entities.Food", "Food")
                         .WithMany("UserReviews")
-                        .HasForeignKey("FoodId1")
+                        .HasForeignKey("FoodId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FoodDelivery.Domain.Entities.UserEntity", "User")
+                    b.HasOne("FoodDelivery.Domain.Entities.User", "User")
                         .WithMany("FoodReviews")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -608,15 +529,15 @@ namespace FoodDelivery.Persistence.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("FoodDelivery.Domain.Entities.OderDetailEntity", b =>
+            modelBuilder.Entity("FoodDelivery.Domain.Entities.OderDetail", b =>
                 {
-                    b.HasOne("FoodDelivery.Domain.Entities.FoodEntity", "Food")
+                    b.HasOne("FoodDelivery.Domain.Entities.Food", "Food")
                         .WithMany("OdersLink")
                         .HasForeignKey("FoodId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FoodDelivery.Domain.Entities.OderEntity", "Oder")
+                    b.HasOne("FoodDelivery.Domain.Entities.Oder", "Oder")
                         .WithMany("FoodsLink")
                         .HasForeignKey("OderId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -627,20 +548,9 @@ namespace FoodDelivery.Persistence.Migrations
                     b.Navigation("Oder");
                 });
 
-            modelBuilder.Entity("FoodDelivery.Domain.Entities.ReviewImageEntity", b =>
+            modelBuilder.Entity("FoodDelivery.Domain.Entities.User", b =>
                 {
-                    b.HasOne("FoodDelivery.Domain.Entities.FoodReviewEntity", "FoodReview")
-                        .WithMany("Images")
-                        .HasForeignKey("FoodReviewUserId", "FoodReviewFoodId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("FoodReview");
-                });
-
-            modelBuilder.Entity("FoodDelivery.Domain.Entities.UserEntity", b =>
-                {
-                    b.HasOne("FoodDelivery.Domain.Entities.RoleEntity", "Role")
+                    b.HasOne("FoodDelivery.Domain.Entities.Role", "Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -649,76 +559,69 @@ namespace FoodDelivery.Persistence.Migrations
                     b.Navigation("Role");
                 });
 
-            modelBuilder.Entity("FoodEntityUserEntity", b =>
+            modelBuilder.Entity("FoodUser", b =>
                 {
-                    b.HasOne("FoodDelivery.Domain.Entities.FoodEntity", null)
+                    b.HasOne("FoodDelivery.Domain.Entities.Food", null)
                         .WithMany()
                         .HasForeignKey("FavoriteFoodsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FoodDelivery.Domain.Entities.UserEntity", null)
+                    b.HasOne("FoodDelivery.Domain.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("FavoriteUsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("NotificationEntityOderEntity", b =>
+            modelBuilder.Entity("NotificationOder", b =>
                 {
-                    b.HasOne("FoodDelivery.Domain.Entities.NotificationEntity", null)
+                    b.HasOne("FoodDelivery.Domain.Entities.Notification", null)
                         .WithMany()
                         .HasForeignKey("NotificationsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FoodDelivery.Domain.Entities.OderEntity", null)
+                    b.HasOne("FoodDelivery.Domain.Entities.Oder", null)
                         .WithMany()
                         .HasForeignKey("OrdersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PermissionEntityRoleEntity", b =>
+            modelBuilder.Entity("PermissionRole", b =>
                 {
-                    b.HasOne("FoodDelivery.Domain.Entities.PermissionEntity", null)
+                    b.HasOne("FoodDelivery.Domain.Entities.Permission", null)
                         .WithMany()
                         .HasForeignKey("PermissionsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FoodDelivery.Domain.Entities.RoleEntity", null)
+                    b.HasOne("FoodDelivery.Domain.Entities.Role", null)
                         .WithMany()
                         .HasForeignKey("RolesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("FoodDelivery.Domain.Entities.FoodEntity", b =>
+            modelBuilder.Entity("FoodDelivery.Domain.Entities.Food", b =>
                 {
-                    b.Navigation("Images");
-
                     b.Navigation("OdersLink");
 
                     b.Navigation("UserReviews");
                 });
 
-            modelBuilder.Entity("FoodDelivery.Domain.Entities.FoodReviewEntity", b =>
-                {
-                    b.Navigation("Images");
-                });
-
-            modelBuilder.Entity("FoodDelivery.Domain.Entities.OderEntity", b =>
+            modelBuilder.Entity("FoodDelivery.Domain.Entities.Oder", b =>
                 {
                     b.Navigation("FoodsLink");
                 });
 
-            modelBuilder.Entity("FoodDelivery.Domain.Entities.RoleEntity", b =>
+            modelBuilder.Entity("FoodDelivery.Domain.Entities.Role", b =>
                 {
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("FoodDelivery.Domain.Entities.UserEntity", b =>
+            modelBuilder.Entity("FoodDelivery.Domain.Entities.User", b =>
                 {
                     b.Navigation("FoodReviews");
                 });

@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.Domain.Entities
 {
-    public class OderDetailEntity : BaseAuditableEntity
+    public class OderDetail : BaseAuditableEntity
     {
         public int OderId { get; set; }
         public int FoodId { get; set; }
         public required int Quantity { get; set; }
-        public required FoodEntity Food { get; set; }
-        public required OderEntity Oder { get; set; }
+        public required Food Food { get; set; }
+        public required Oder Oder { get; set; }
 
     }
 }
