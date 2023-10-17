@@ -13,15 +13,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{FAE3E2
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDelivery.Domain", "FoodDelivery.Domain\FoodDelivery.Domain.csproj", "{D488F25A-FC48-431B-B04A-CA3EAEA615DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodDelivery.Application", "FoodDelivery.Application\FoodDelivery.Application.csproj", "{0BB11AAE-CD8F-4795-B320-5B9C7087EEAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDelivery.Application", "FoodDelivery.Application\FoodDelivery.Application.csproj", "{0BB11AAE-CD8F-4795-B320-5B9C7087EEAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodDelivery.Infrastructure", "FoodDelivery.Infrastructure\FoodDelivery.Infrastructure.csproj", "{6902502A-EB9D-41E2-8BD5-BD0B40F7B063}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDelivery.Infrastructure", "FoodDelivery.Infrastructure\FoodDelivery.Infrastructure.csproj", "{6902502A-EB9D-41E2-8BD5-BD0B40F7B063}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodDelivery.Persistence", "FoodDelivery.Persistence\FoodDelivery.Persistence.csproj", "{429904CB-18A0-4F04-B570-F8C0A486C0ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDelivery.Persistence", "FoodDelivery.Persistence\FoodDelivery.Persistence.csproj", "{429904CB-18A0-4F04-B570-F8C0A486C0ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodDelivery.WebAPI", "FoodDelivery.WebAPI\FoodDelivery.WebAPI.csproj", "{7E715DF3-AE0E-4941-8BC1-88046DC469D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDelivery.WebAPI", "FoodDelivery.WebAPI\FoodDelivery.WebAPI.csproj", "{7E715DF3-AE0E-4941-8BC1-88046DC469D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodDelivery.Shared", "FoodDelivery.Shared\FoodDelivery.Shared.csproj", "{845F1771-8D8D-4DB0-9FE8-D5F727214D3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDelivery.Shared", "FoodDelivery.Shared\FoodDelivery.Shared.csproj", "{845F1771-8D8D-4DB0-9FE8-D5F727214D3F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B90505C7-908C-4EC6-8FAE-78890A9FEC17}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

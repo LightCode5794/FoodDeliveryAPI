@@ -1,4 +1,5 @@
-﻿using FoodDelivery.Application.Features.Foods.Commands.CreateFood;
+﻿using FoodDelivery.Application.Features.Users.Commands.CreateUser;
+using FoodDelivery.Application.Features.Users.Queries.GetAllUsers;
 using FoodDelivery.Shared;
 using MediatR;
 
@@ -15,7 +16,7 @@ namespace CleanArchitectureDemo.WebAPI.Controllers
             _mediator = mediator;   
         }
 
-      
+
 
         /* [HttpGet]
         [Route("paged")]
@@ -34,6 +35,12 @@ namespace CleanArchitectureDemo.WebAPI.Controllers
             var errorMessages = result.Errors.Select(x => x.ErrorMessage).ToList();
             return BadRequest(errorMessages); 
         } */
+        [HttpGet]
+        public async Task<ActionResult<Result<List<UserDto>>>> Get()
+        {
+            return await _mediator.Send(new GetAllUsersQuery());
+        }
+
 
         [HttpPost]
         public async Task<ActionResult<Result<int>>> Create(CreateUserCommand command)

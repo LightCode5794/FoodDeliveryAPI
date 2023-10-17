@@ -7,11 +7,11 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodDelivery.Application.Features.Foods.Commands.CreateFood
+namespace FoodDelivery.Application.Features.Users.Commands.CreateUser
 {
     public class UserCreatedEvent : BaseEvent
     {
-        public User User{ get; }
+        public User User { get; }
 
         public UserCreatedEvent(User user)
         {
